@@ -27,7 +27,7 @@
 <meta property="og:image" content="https://fyg-public.oss-ap-northeast-1.aliyuncs.com/img/co06.jpg">
 <meta property="og:image" content="https://fyg-public.oss-ap-northeast-1.aliyuncs.com/img/co07.jpg">
 <meta property="article:published_time" content="2026-01-07T22:02:05.000Z">
-<meta property="article:modified_time" content="2026-01-07T22:24:43.267Z">
+<meta property="article:modified_time" content="2026-01-07T22:28:47.499Z">
 <meta property="article:author" content="Han">
 <meta property="article:tag" content="CO">
 <meta property="article:tag" content="EXIT">
@@ -38,7 +38,7 @@
 <meta name="twitter:image" content="https://fyg-public.oss-ap-northeast-1.aliyuncs.com/img/co01.jpg">
   <meta name="generator" content="Hexo 8.1.1">
   <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://ukouhan.github.io/2026/01/07/CALCULATE-OVERHEAD/"},"headline":"成本计算中与间接费相关的扩展","description":"本文整理至之前的本人所写的公众号文章。 目前正做一个FICO的项目。客户要求对物料的利益中心定期进行变更。每次变更需要一段时间，维护期间标准程序会从MARC里读取利益中心，此时利益中心有可能还是旧值没来得及修改，会导致一些问题。总的对应方法是：设置了如下的addon表，将现存程序里读取利益中心的逻辑，改成先查询addo","datePublished":"2026-01-07T22:02:05.000Z","dateModified":"2026-01-07T22:24:43.267Z","author":{"@type":"Person","name":"Han"},"publisher":{"@type":"Organization","name":"F's Third Space","logo":{"@type":"ImageObject","url":"http://ukouhan.github.io/favicon.ico"}}}
+{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://ukouhan.github.io/2026/01/07/CALCULATE-OVERHEAD/"},"headline":"成本计算中与间接费相关的扩展","description":"本文整理至之前的本人所写的公众号文章。 目前正做一个FICO的项目。客户要求对物料的利益中心定期进行变更。每次变更需要一段时间，维护期间标准程序会从MARC里读取利益中心，此时利益中心有可能还是旧值没来得及修改，会导致一些问题。总的对应方法是：设置了如下的addon表，将现存程序里读取利益中心的逻辑，改成先查询addo","datePublished":"2026-01-07T22:02:05.000Z","dateModified":"2026-01-07T22:28:47.499Z","author":{"@type":"Person","name":"Han"},"publisher":{"@type":"Organization","name":"F's Third Space","logo":{"@type":"ImageObject","url":"http://ukouhan.github.io/favicon.ico"}}}
 </script>
 
   
@@ -174,9 +174,9 @@
 </tr>
 </tbody></table>
 <p>本文探讨如何更改标准程序（CK11N，CO01）里的间接费计算逻辑。</p>
-<p>间接费相关的配置<br>成本计算表<br><img src="https://fyg-public.oss-ap-northeast-1.aliyuncs.com/img/co01.jpg" alt="成本计算表"><br>下面是一个标准的计算表。<br><img src="https://fyg-public.oss-ap-northeast-1.aliyuncs.com/img/co02.jpg" alt="成本计算表"><br>基准行表示计算的base。通常根据成本要素归集。<br><img src="https://fyg-public.oss-ap-northeast-1.aliyuncs.com/img/co03.jpg" alt="成本计算表"><br>其中间接费率有值的行表示费率。可以根据利益中心来配置。<br><img src="https://fyg-public.oss-ap-northeast-1.aliyuncs.com/img/co04.jpg" alt="成本计算表"><br>按照标准功能，SAP在成本累积（CK11N,CK40N）时，会从MARC里取得利益中心，再根据所取的利益中心从配置中读取对应的利率来计算间接费。<br>指図登録（CO01 create Production order）时，会从指図（Production order）里取利益中心。</p>
+<p>■ 间接费相关的配置<br>成本计算表<br><img src="https://fyg-public.oss-ap-northeast-1.aliyuncs.com/img/co01.jpg" alt="成本计算表"><br>下面是一个标准的计算表。<br><img src="https://fyg-public.oss-ap-northeast-1.aliyuncs.com/img/co02.jpg" alt="成本计算表"><br>基准行表示计算的base。通常根据成本要素归集。<br><img src="https://fyg-public.oss-ap-northeast-1.aliyuncs.com/img/co03.jpg" alt="成本计算表"><br>其中间接费率有值的行表示费率。可以根据利益中心来配置。<br><img src="https://fyg-public.oss-ap-northeast-1.aliyuncs.com/img/co04.jpg" alt="成本计算表"><br>按照标准功能，SAP在成本累积（CK11N,CK40N）时，会从MARC里取得利益中心，再根据所取的利益中心从配置中读取对应的利率来计算间接费。<br>指図登録（CO01 create Production order）时，会从指図（Production order）里取利益中心。</p>
 <p>目前需要做的是，更改标准功能，在间接费计算时，先从读用户维护的addon表，addon表里没有时再读取MARC的利益中心。</p>
-<p>解决方法<br>通过如下的ENHANCEMENT扩展，更改利益中心（co_obj-objdata-prctr）的值即可。</p>
+<p>■ 解决方法:<br>通过如下的ENHANCEMENT扩展，更改利益中心（co_obj-objdata-prctr）的值即可。</p>
 <blockquote>
 <p>ENHANCEMENT POINT：SAPLKKCKF03_001.<br>ENHANCEMENT SPOT ：ES_SAPLKKCK.</p>
 </blockquote>
