@@ -1160,6 +1160,16 @@ html[theme=dark] .token.inserted {
 .sea-page-categories__item .name {
   margin: 0 .5rem;
 }
+
+.me{
+  width: 120px;
+    float: right;
+}
+
+.me img{
+  border-radius: 50%;
+  width: 100%;
+}
 #sea-hero-info {
   display: flex;
   align-items: center;
