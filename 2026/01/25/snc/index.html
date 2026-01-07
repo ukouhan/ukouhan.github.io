@@ -2,44 +2,37 @@
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
-  <title>PDSマニュアル生成 | F's Third Space</title>
+  <title>SNC PO 项目扩张 | F's Third Space</title>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="keywords" content="">
   <meta name="theme-color" content="#10b981">
 
-  <link rel="canonical" href="http://ukouhan.github.io/2026/01/25/pds/">
+  <link rel="canonical" href="http://ukouhan.github.io/2026/01/25/snc/">
 
   
 
-  <meta name="description" content="前提：製造バージョン、作業手順、BOMをすでに作成されている １　CFM1 2  CFM2Tcode：CURTO_CREATEでCFM2を代替することもできるテストモードでエラーをチェックする初期生成する場合、「変更データ転送」を外してください3  SCM側に汎用モジュールを実行して転送されたデータを確認する">
+  <meta name="description" content="在SNC的PO worklist Due Confirmations画面扩张项目，最终实现效果如下(Purchase Group，Condition Group和Stock type为扩张项目):本文只讨论SNC接收数据方的处理，发信方不在本文范围。 1 BADI &#x2F;SCA&#x2F;BIF_I_REPLORD: 接受数据→DM  继承实现Method:AFTER_CONVERSION">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PDSマニュアル生成">
-<meta property="og:url" content="http://ukouhan.github.io/2026/01/25/pds/index.html">
+<meta property="og:title" content="SNC PO 项目扩张">
+<meta property="og:url" content="http://ukouhan.github.io/2026/01/25/snc/index.html">
 <meta property="og:site_name" content="F&#39;s Third Space">
-<meta property="og:description" content="前提：製造バージョン、作業手順、BOMをすでに作成されている １　CFM1 2  CFM2Tcode：CURTO_CREATEでCFM2を代替することもできるテストモードでエラーをチェックする初期生成する場合、「変更データ転送」を外してください3  SCM側に汎用モジュールを実行して転送されたデータを確認する">
+<meta property="og:description" content="在SNC的PO worklist Due Confirmations画面扩张项目，最终实现效果如下(Purchase Group，Condition Group和Stock type为扩张项目):本文只讨论SNC接收数据方的处理，发信方不在本文范围。 1 BADI &#x2F;SCA&#x2F;BIF_I_REPLORD: 接受数据→DM  继承实现Method:AFTER_CONVERSION">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://fyg-public.oss-ap-northeast-1.aliyuncs.com/img/pds1.png">
-<meta property="og:image" content="https://fyg-public.oss-ap-northeast-1.aliyuncs.com/img/pds2.png">
-<meta property="og:image" content="https://fyg-public.oss-ap-northeast-1.aliyuncs.com/img/pds3.png">
-<meta property="og:image" content="https://fyg-public.oss-ap-northeast-1.aliyuncs.com/img/pds4.png">
-<meta property="og:image" content="https://fyg-public.oss-ap-northeast-1.aliyuncs.com/img/pds5.png">
-<meta property="og:image" content="https://fyg-public.oss-ap-northeast-1.aliyuncs.com/img/pds6.png">
-<meta property="og:image" content="https://fyg-public.oss-ap-northeast-1.aliyuncs.com/img/pds7.png">
-<meta property="article:published_time" content="2026-01-25T13:18:15.000Z">
-<meta property="article:modified_time" content="2026-01-07T13:59:43.655Z">
+<meta property="og:image" content="https://fyg-public.oss-ap-northeast-1.aliyuncs.com/img/snc1.png">
+<meta property="og:image" content="https://fyg-public.oss-ap-northeast-1.aliyuncs.com/img/postexit.png">
+<meta property="article:published_time" content="2026-01-25T14:42:27.000Z">
+<meta property="article:modified_time" content="2026-01-07T18:28:37.283Z">
 <meta property="article:author" content="Han">
-<meta property="article:tag" content="APO">
-<meta property="article:tag" content="PDS">
-<meta property="article:tag" content="PP&#x2F;DS">
+<meta property="article:tag" content="BADI">
+<meta property="article:tag" content="EXIT">
 <meta property="article:tag" content="SAP">
-<meta property="article:tag" content="SCM">
-<meta property="article:tag" content="生産データ構造">
+<meta property="article:tag" content="SNC">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://fyg-public.oss-ap-northeast-1.aliyuncs.com/img/pds1.png">
+<meta name="twitter:image" content="https://fyg-public.oss-ap-northeast-1.aliyuncs.com/img/snc1.png">
   <meta name="generator" content="Hexo 8.1.1">
   <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://ukouhan.github.io/2026/01/25/pds/"},"headline":"PDSマニュアル生成","description":"前提：製造バージョン、作業手順、BOMをすでに作成されている １　CFM1 2  CFM2Tcode：CURTO_CREATEでCFM2を代替することもできるテストモードでエラーをチェックする初期生成する場合、「変更データ転送」を外してください3  SCM側に汎用モジュールを実行して転送されたデータを確認する","datePublished":"2026-01-25T13:18:15.000Z","dateModified":"2026-01-07T13:59:43.655Z","author":{"@type":"Person","name":"Han"},"publisher":{"@type":"Organization","name":"F's Third Space","logo":{"@type":"ImageObject","url":"http://ukouhan.github.io/favicon.ico"}}}
+{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://ukouhan.github.io/2026/01/25/snc/"},"headline":"SNC PO 项目扩张","description":"在SNC的PO worklist Due Confirmations画面扩张项目，最终实现效果如下(Purchase Group，Condition Group和Stock type为扩张项目):本文只讨论SNC接收数据方的处理，发信方不在本文范围。 1 BADI &#x2F;SCA&#x2F;BIF_I_REPLOR","datePublished":"2026-01-25T14:42:27.000Z","dateModified":"2026-01-07T18:28:37.283Z","author":{"@type":"Person","name":"Han"},"publisher":{"@type":"Organization","name":"F's Third Space","logo":{"@type":"ImageObject","url":"http://ukouhan.github.io/favicon.ico"}}}
 </script>
 
   
@@ -133,12 +126,12 @@
   <main id="sea-main-wrapper" data-pagefind-body>
     <article class="sea-page-card-wrapper">
   <header class="sea-article-header">
-    <h1 class="sea-article-title">PDSマニュアル生成</h1>
+    <h1 class="sea-article-title">SNC PO 项目扩张</h1>
     
       <div class="sea-post-meta sea-post-meta__center">
         <div class="sea-post-time">
   <svg t="1716964550804" class="sea-svg-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2621" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200"><path d="M805.49888 981.49888l-602.3168-0.76288c-86.59456-8.192-154.56768-81.3056-154.56768-170.01472L48.6144 291.73248c0-94.1568 76.60032-170.75712 170.7776-170.75712l586.10176 0c94.1568 0 170.73152 76.60032 170.73152 170.75712L976.22528 810.7008C976.2304 904.87296 899.63008 981.49888 805.49888 981.49888L805.49888 981.49888zM219.3664 190.57152c-55.79776 0-101.20192 45.38368-101.20192 101.18144l0 518.96832c0 55.79776 45.40416 101.20704 101.20192 101.20704l586.13248 0c55.77728 0 101.16096-45.40928 101.16096-101.20704L906.65984 291.73248c0-55.79776-45.38368-101.18656-101.16096-101.18656L219.3664 190.54592 219.3664 190.57152zM698.84416 290.51904c-25.60512 0-46.38208-20.77696-46.38208-46.38208l0-158.6688c0-25.6 20.77696-46.38208 46.38208-46.38208 25.6 0 46.38208 20.78208 46.38208 46.38208L745.22624 244.1216C745.22624 269.7472 724.46976 290.51904 698.84416 290.51904L698.84416 290.51904zM315.65824 290.51904c-25.60512 0-46.38208-20.77696-46.38208-46.38208l0-158.6688c0-25.6 20.77696-46.38208 46.38208-46.38208 25.6 0 46.38208 20.78208 46.38208 46.38208L362.04032 244.1216C362.04032 269.7472 341.28896 290.51904 315.65824 290.51904L315.65824 290.51904zM534.8864 794.78784l-44.27264 0c-25.6 0-46.38208-20.77696-46.38208-46.38208 0-25.6 20.78208-46.38208 46.38208-46.38208l44.27264 0c25.6 0 46.38208 20.78208 46.38208 46.38208C581.26848 774.01088 560.4864 794.78784 534.8864 794.78784L534.8864 794.78784zM930.79552 452.608 121.24672 452.608c-25.60512 0-46.38208-20.78208-46.38208-46.38208 0-25.60512 20.77696-46.38208 46.38208-46.38208l809.5744 0c25.6 0 46.38208 20.77696 46.38208 46.38208C977.2032 431.82592 956.42624 452.608 930.79552 452.608L930.79552 452.608zM327.92576 649.03168l-44.27264 0c-25.6 0-46.38208-20.78208-46.38208-46.38208 0-25.60512 20.78208-46.38208 46.38208-46.38208l44.27264 0c25.6 0 46.38208 20.77696 46.38208 46.38208C374.30784 628.25472 353.52576 649.03168 327.92576 649.03168L327.92576 649.03168zM534.8864 649.03168l-44.27264 0c-25.6 0-46.38208-20.78208-46.38208-46.38208 0-25.60512 20.78208-46.38208 46.38208-46.38208l44.27264 0c25.6 0 46.38208 20.77696 46.38208 46.38208S560.4864 649.03168 534.8864 649.03168L534.8864 649.03168zM741.27872 649.03168l-44.26752 0c-25.60512 0-46.38208-20.78208-46.38208-46.38208 0-25.60512 20.77696-46.38208 46.38208-46.38208l44.26752 0c25.60512 0 46.38208 20.77696 46.38208 46.38208C787.6608 628.25472 766.90944 649.03168 741.27872 649.03168L741.27872 649.03168zM327.92576 794.78784l-44.27264 0c-25.6 0-46.38208-20.77696-46.38208-46.38208 0-25.6 20.78208-46.38208 46.38208-46.38208l44.27264 0c25.6 0 46.38208 20.78208 46.38208 46.38208C374.30784 774.01088 353.52576 794.78784 327.92576 794.78784L327.92576 794.78784zM741.27872 794.78784l-44.26752 0c-25.60512 0-46.38208-20.77696-46.38208-46.38208 0-25.6 20.77696-46.38208 46.38208-46.38208l44.26752 0c25.60512 0 46.38208 20.78208 46.38208 46.38208C787.6608 774.01088 766.90944 794.78784 741.27872 794.78784L741.27872 794.78784z" p-id="2622"></path></svg>
-  <time datetime="2026-01-25T13:18:15.000Z">2026-01-25</time>
+  <time datetime="2026-01-25T14:42:27.000Z">2026-01-25</time>
 </div>
         
   <div class="sea-post-categories">
@@ -149,7 +142,7 @@
         
   <div class="sea-post-tags">
     <svg t="1716964811431" class="sea-svg-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="6117" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200"><path d="M384 977.152c-20.5312 0-39.8336-7.9872-54.3232-22.4256l-260.4032-260.4032c-14.4896-14.4896-22.4256-33.7408-22.4256-54.3232s7.9872-39.8336 22.4256-54.3232l439.6032-439.6032c24.9344-24.9344 70.2464-43.7248 105.5232-43.7248h230.4c42.3424 0 76.8 34.4576 76.8 76.8v230.4c0 35.2256-18.7904 80.5888-43.6736 105.5232l-439.6032 439.6032a76.1856 76.1856 0 0 1-54.3232 22.4256zM614.4 153.6c-21.248 0-54.272 13.6704-69.2736 28.7232l-439.6032 439.6032c-4.8128 4.8128-7.424 11.2128-7.424 18.1248s2.6624 13.312 7.424 18.0736l260.4032 260.4032c4.8128 4.8128 11.2128 7.424 18.1248 7.424s13.312-2.6624 18.1248-7.424l439.6032-439.6032c15.0016-15.0016 28.7232-48.0768 28.7232-69.3248V179.2a25.6 25.6 0 0 0-25.6-25.6h-230.4z" p-id="6118"></path><path d="M742.4 358.4c-42.3424 0-76.8-34.4576-76.8-76.8S700.0576 204.8 742.4 204.8s76.8 34.4576 76.8 76.8S784.7424 358.4 742.4 358.4z m0-102.4a25.6 25.6 0 1 0 0 51.2 25.6 25.6 0 0 0 0-51.2z" p-id="6119"></path></svg>
-    <a class="tag-link" href="/tags/APO/" rel="tag">APO</a> , <a class="tag-link" href="/tags/PDS/" rel="tag">PDS</a> , <a class="tag-link" href="/tags/PP-DS/" rel="tag">PP/DS</a> , <a class="tag-link" href="/tags/SAP/" rel="tag">SAP</a> , <a class="tag-link" href="/tags/SCM/" rel="tag">SCM</a> , <a class="tag-link" href="/tags/%E7%94%9F%E7%94%A3%E3%83%87%E3%83%BC%E3%82%BF%E6%A7%8B%E9%80%A0/" rel="tag">生産データ構造</a>
+    <a class="tag-link" href="/tags/BADI/" rel="tag">BADI</a> , <a class="tag-link" href="/tags/EXIT/" rel="tag">EXIT</a> , <a class="tag-link" href="/tags/SAP/" rel="tag">SAP</a> , <a class="tag-link" href="/tags/SNC/" rel="tag">SNC</a>
   </div>
 
       </div>
@@ -158,9 +151,13 @@
   <div class="sea-doc">
     
     <div class="sea-article-content">
-      <p>前提：製造バージョン、作業手順、BOMをすでに作成されている</p>
-<p>１　CFM1<br><img src="https://fyg-public.oss-ap-northeast-1.aliyuncs.com/img/pds1.png" alt="CFM1_1"><br><img src="https://fyg-public.oss-ap-northeast-1.aliyuncs.com/img/pds2.png" alt="CFM1_2"></p>
-<p>2  CFM2<br><img src="https://fyg-public.oss-ap-northeast-1.aliyuncs.com/img/pds3.png" alt="CFM2_1"><br><img src="https://fyg-public.oss-ap-northeast-1.aliyuncs.com/img/pds4.png" alt="CFM2_2"><br>Tcode：CURTO_CREATEでCFM2を代替することもできる<br><img src="https://fyg-public.oss-ap-northeast-1.aliyuncs.com/img/pds5.png" alt="CURTO_CREATE"><br>テストモードでエラーをチェックする<br>初期生成する場合、「変更データ転送」を外してください<br><img src="https://fyg-public.oss-ap-northeast-1.aliyuncs.com/img/pds6.png" alt="CURTO_CREATE"><br>3  SCM側に汎用モジュールを実行して転送されたデータを確認する<br><img src="https://fyg-public.oss-ap-northeast-1.aliyuncs.com/img/pds7.png" alt="pds7"></p>
+      <p>在SNC的PO worklist Due Confirmations画面扩张项目，最终实现效果如下(Purchase Group，Condition Group和Stock type为扩张项目):<br><img src="https://fyg-public.oss-ap-northeast-1.aliyuncs.com/img/snc1.png" alt="SNC1"><br>本文只讨论SNC接收数据方的处理，发信方不在本文范围。</p>
+<p>1 BADI &#x2F;SCA&#x2F;BIF_I_REPLORD: 接受数据→DM<br>  继承实现Method:AFTER_CONVERSION<br>  前提:需要扩张DM构造&#x2F;SCMB&#x2F;DM_ORDER_STR(order header),&#x2F;SCMB&#x2F;DM_ORDER_ITM_STR(order item)<br>  以便将接收到的值传入扩张后的CS_ORDER项目中。</p>
+<p>2 BADI &#x2F;SCA&#x2F;ORDER:<br>　前提：需要扩张DM构造及ODM构造<br>&emsp;&emsp;&#x2F;SCMB&#x2F;ODM_ORH_EXT_STR(order header)<br>&emsp;&emsp;&#x2F;SCMB&#x2F;ODM_ORI_EXT_STR(order item)<br>&emsp;&emsp;※DM构造参考前述1</p>
+<p>　①继承实现Method:AFTER_MAPPING_DM2ODM　DM→ODM<br>　对扩张项目mapping。实现后数据将保存至数据库以下表<br>&emsp;&emsp;&#x2F;1OM&#x2F;ORDR7MP3300 (oder id 和PO号mapping)<br>&emsp;&emsp;&#x2F;1OM&#x2F;ORDROEHD300 (oder header)<br>&emsp;&emsp;&#x2F;1OM&#x2F;ORDROEIT300 (oder item)<br>&emsp;&emsp;※表ID并非固定，最后3位为系统client</p>
+<p>　②继承实现Method:AFTER_MAPPING_ODM2DM　ODM→DM<br>&emsp;&emsp;这个是为了实现从db抽取数据的逻辑</p>
+<p>3 CLASS　&#x2F;SCF&#x2F;CL_SVORDER<br>　Method　MAP_ODM2BOL_CONFLIST<br>　用POST EXIT修改原有逻辑，将扩张项目添加到CONFLIST中<br><img src="https://fyg-public.oss-ap-northeast-1.aliyuncs.com/img/postexit.png" alt="POSTEXIT"></p>
+<p>3 CLASS　&#x2F;SCF&#x2F;CL_APP_MODEL_PO_POWL<br>　Method　MAP_CONFPUBLIST_FROM_DM_TO_UI<br>　用POST EXIT修改原有逻辑，将扩张项目添加显示到页面中</p>
 
     </div>
   </div>
@@ -169,17 +166,10 @@
     
   <div class="sea-prev-next-wrapper">
     
-      <div class="prev">
-        <svg t="1725418977480" class="sea-svg-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4239" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200"><path d="M384 512L731.733333 202.666667c17.066667-14.933333 19.2-42.666667 4.266667-59.733334-14.933333-17.066667-42.666667-19.2-59.733333-4.266666l-384 341.333333c-10.666667 8.533333-14.933333 19.2-14.933334 32s4.266667 23.466667 14.933334 32l384 341.333333c8.533333 6.4 19.2 10.666667 27.733333 10.666667 12.8 0 23.466667-4.266667 32-14.933333 14.933333-17.066667 14.933333-44.8-4.266667-59.733334L384 512z" p-id="4240"></path></svg>
-        <a class="link" href="/2026/01/25/snc/">
-          SNC PO 项目扩张
-        </a>
-      </div>
-    
     
       <div class="next">
-        <a class="link" href="/2026/01/07/Arrangement/">
-          供給量割当・割当済数量更新
+        <a class="link" href="/2026/01/25/pds/">
+          PDSマニュアル生成
         </a>
         <svg t="1725418993065" class="sea-svg-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="6832" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200"><path d="M731.733333 480l-384-341.333333c-17.066667-14.933333-44.8-14.933333-59.733333 4.266666-14.933333 17.066667-14.933333 44.8 4.266667 59.733334L640 512 292.266667 821.333333c-17.066667 14.933333-19.2 42.666667-4.266667 59.733334 8.533333 8.533333 19.2 14.933333 32 14.933333 10.666667 0 19.2-4.266667 27.733333-10.666667l384-341.333333c8.533333-8.533333 14.933333-19.2 14.933334-32s-4.266667-23.466667-14.933334-32z" p-id="6833"></path></svg>
       </div>
