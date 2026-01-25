@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
-  <title>成本计算中与间接费相关的扩展 | F's Third Space</title>
+  <title>成本计算中与间接费相关的扩展 | Han & Yu</title>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="keywords" content="">
@@ -16,7 +16,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="成本计算中与间接费相关的扩展">
 <meta property="og:url" content="http://ukouhan.github.io/2026/01/07/CALCULATE-OVERHEAD/index.html">
-<meta property="og:site_name" content="F&#39;s Third Space">
+<meta property="og:site_name" content="Han &amp; Yu">
 <meta property="og:description" content="本文整理自之前的本人所写的公众号文章。 目前正做一个FICO的项目。客户要求对物料的利益中心定期进行变更。每次变更需要一段时间，维护期间标准程序会从MARC里读取利益中心，此时利益中心有可能还是旧值没来得及修改，会导致一些问题。总的对应方法是：设置了如下的addon表，将现存程序里读取利益中心的逻辑，改成先查询addon表（利益中心变更对象），没有数据的情况下再查询标准marc表。    旧利益中">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://fyg-public.oss-ap-northeast-1.aliyuncs.com/img/co01.jpg">
@@ -38,7 +38,7 @@
 <meta name="twitter:image" content="https://fyg-public.oss-ap-northeast-1.aliyuncs.com/img/co01.jpg">
   <meta name="generator" content="Hexo 8.1.1">
   <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://ukouhan.github.io/2026/01/07/CALCULATE-OVERHEAD/"},"headline":"成本计算中与间接费相关的扩展","description":"本文整理自之前的本人所写的公众号文章。 目前正做一个FICO的项目。客户要求对物料的利益中心定期进行变更。每次变更需要一段时间，维护期间标准程序会从MARC里读取利益中心，此时利益中心有可能还是旧值没来得及修改，会导致一些问题。总的对应方法是：设置了如下的addon表，将现存程序里读取利益中心的逻辑，改成先查询addo","datePublished":"2026-01-07T22:02:05.000Z","dateModified":"2026-01-07T22:35:36.215Z","author":{"@type":"Person","name":"Han"},"publisher":{"@type":"Organization","name":"F's Third Space","logo":{"@type":"ImageObject","url":"http://ukouhan.github.io/favicon.ico"}}}
+{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://ukouhan.github.io/2026/01/07/CALCULATE-OVERHEAD/"},"headline":"成本计算中与间接费相关的扩展","description":"本文整理自之前的本人所写的公众号文章。 目前正做一个FICO的项目。客户要求对物料的利益中心定期进行变更。每次变更需要一段时间，维护期间标准程序会从MARC里读取利益中心，此时利益中心有可能还是旧值没来得及修改，会导致一些问题。总的对应方法是：设置了如下的addon表，将现存程序里读取利益中心的逻辑，改成先查询addo","datePublished":"2026-01-07T22:02:05.000Z","dateModified":"2026-01-07T22:35:36.215Z","author":{"@type":"Person","name":"Han"},"publisher":{"@type":"Organization","name":"Han & Yu","logo":{"@type":"ImageObject","url":"http://ukouhan.github.io/favicon.ico"}}}
 </script>
 
   
@@ -60,7 +60,7 @@
   <header class="sea-header">
     <nav class="sea-nav-wrap">
   <div class="sea-nav-logo" title="">
-    <a href="/">F's Third Space</a>
+    <a href="/">Han & Yu</a>
   </div>
   <div class="sea-nav-menus">
     <div id="sea-nav-toggle">
